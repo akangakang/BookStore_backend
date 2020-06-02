@@ -35,18 +35,15 @@ public class BookController {
         ArrayList<JSONObject> booksJson = new ArrayList<JSONObject>();
         while (it.hasNext()) {
             Book book = (Book) it.next();
-
             JSONObject model=new JSONObject();
             model.put("key",book.getBookId());
-        model.put("book",book.getName());
-        model.put("author",book.getAuthor());
-        model.put("isbn",book.getIsbn());
-        model.put("stock",book.getInventory());
-        if(book.getExtraCover()!=null)
-        {
+            model.put("book",book.getName());
+            model.put("author",book.getAuthor());
+            model.put("isbn",book.getIsbn());
+            model.put("stock",book.getInventory());
+            model.put("description",book.getDescription());
             model.put("cover",book.getExtraCover().getImage());
-            // System.out.println("cover not null");
-        }
+
 
         model.put("price",book.getPrice());
         model.put("type",book.getType().getName());
@@ -80,24 +77,7 @@ public class BookController {
         System.out.println("getBooksByType");
         System.out.println(id);
         List<Book> ans=bookService.getBooksByType(id);
-//        Iterator<Book> it =ans.iterator();
-//
-//        ArrayList<JSONObject> booksJson = new ArrayList<JSONObject>();
-//        int i=0;
-//        while (it.hasNext() && i<=2) {
-//            Book book = (Book) it.next();
-//
-//            i++;
-//            JSONObject model=new JSONObject();
-//            model.put("key",book.getBookId());
-//            model.put("book",book.getName());
-//            model.put("author",book.getAuthor());
-//            model.put("description",book.getDescription());
-//            model.put("cover",book.getImage());
-//            booksJson.add(model);
-//        }
-//        String  booksString = JSON.toJSONString(booksJson, SerializerFeature.BrowserCompatible);
-//        System.out.println(booksString);
+
         return ans;
     }
 
@@ -126,7 +106,7 @@ public class BookController {
             booksJson.add(model);
         }
         String  booksString = JSON.toJSONString(booksJson, SerializerFeature.BrowserCompatible);
-        System.out.println(booksString);
+//        System.out.println(booksString);
         return booksString;
     }
 
@@ -145,6 +125,20 @@ public class BookController {
         System.out.println(params);
 
         return typeService.editType(params);
+    }
+
+    @RequestMapping("/editImg")
+    public Msg editImg(@RequestBody Map<String, String> params){
+        System.out.println("editImg");
+        System.out.println(params);
+
+        if(bookService.editImg(params)>0)
+        {
+            return MsgUtil.makeMsg(1,"传图片成功");
+        }
+        else {
+            return MsgUtil.makeMsg(0,"上传图片失败");
+        }
     }
 
     @RequestMapping("/deleteBook")

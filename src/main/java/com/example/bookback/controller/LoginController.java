@@ -32,6 +32,10 @@ public class LoginController {
         String username=params.get("username");
         String password=params.get("password");
         User auth = userService.checkUser(username, password);
+        if(auth.getIsBanned()==1)
+        {
+            return MsgUtil.makeMsg(MsgCode.LOGIN_USER_BANNED);
+        }
         if(auth != null){
 
             //若成功登录则把用户信息存入session

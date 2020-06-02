@@ -23,4 +23,6 @@ public interface OrderDao {
     Order getOrderById(Integer orderId);
 
     void addOredrItemForOrder(Order order, OrderItem orderItem);
+
+    List<Order> getOrderByUserId(Integer userId);
 }

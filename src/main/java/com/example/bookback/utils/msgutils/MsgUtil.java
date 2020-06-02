@@ -9,6 +9,7 @@ public class MsgUtil {
     public static final int ERROR = -1;
     public static final int LOGIN_USER_ERROR = -100;
     public static final int NOT_LOGGED_IN_ERROR = -101;
+    public static final int LOGIN_USER_BANNED=-102;
 
     public static final String SUCCESS_MSG = "成功";
     public static final String LOGIN_SUCCESS_MSG = "登录成功";
@@ -17,6 +18,7 @@ public class MsgUtil {
     public static final String ERROR_MSG = "错误";
     public static final String LOGIN_USER_ERROR_MSG = "用户名或密码错误，请重新输入";
     public static final String NOT_LOGGED_IN_ERROR_MSG = "登录失效，请重新登录";
+    public static final String LOGIN_USER_BANNED_MSG= "登录失败：您的账号已被禁用";
 
 
 

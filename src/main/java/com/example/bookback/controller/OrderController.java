@@ -2,6 +2,7 @@ package com.example.bookback.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.example.bookback.entity.Book;
 import com.example.bookback.entity.Order;
 import com.example.bookback.entity.OrderItem;
 import com.example.bookback.service.OrderItemService;
@@ -91,9 +92,24 @@ public class OrderController {
             model.put("date",order.getDate().toString());
             model.put("userId",order.getUser().getUserId());
 
+            List<OrderItem> orderItems=order.getMyOrder();
+            Iterator<OrderItem> orderItemIterator=orderItems.iterator();
+            ArrayList<com.alibaba.fastjson.JSONObject> orderItemJson = new ArrayList<com.alibaba.fastjson.JSONObject>();
+            while(orderItemIterator.hasNext())
+            {
+                com.alibaba.fastjson.JSONObject model1=new com.alibaba.fastjson.JSONObject();
+                OrderItem orderItem=orderItemIterator.next();
+
+                Book book=orderItem.getBook();
+
+                model1.put("book",book.getName());
+
+                orderItemJson.add(model1);
+            }
+            model.put("myOrder",orderItemJson);
             orderJSON.add(model);
         }
-        String  orderString = JSON.toJSONString(orderJSON, SerializerFeature.BrowserCompatible);
+        String  orderString = JSON.toJSONString(orderJSON, SerializerFeature.DisableCircularReferenceDetect);
         System.out.println(orderString);
         return orderString;
     }
@@ -104,4 +120,19 @@ public class OrderController {
         Order order=orderService.getOrderById(orderId);
         return order.getDate();
     }
+
+    @GetMapping("/getOrderAllInfo")
+    public String getOrderAllInfo(@RequestParam(value="userId") Integer userId)
+    {
+        System.out.println("getOrderAllInfo");
+        System.out.println(userId);
+
+        String orders= orderService.getOrderByUserId(userId);
+//        String jsonStr = JSON.toJSONString(orders,SerializerFeature.DisableCircularReferenceDetect);
+//        System.out.println(jsonStr);
+        return orders;
+
+    }
+
+
 }

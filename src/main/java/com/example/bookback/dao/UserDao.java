@@ -4,6 +4,7 @@ package com.example.bookback.dao;
 import com.example.bookback.entity.User;
 import com.example.bookback.utils.msgutils.Msg;
 
+import java.util.List;
 import java.util.Map;
 
 public interface UserDao {
@@ -13,4 +14,8 @@ public interface UserDao {
     Msg register(Map<String, String> params);
 
     User findById(Integer id);
+
+    List<User> getAllUser();
+
+    int editUser(Map<String, String> params);
 }

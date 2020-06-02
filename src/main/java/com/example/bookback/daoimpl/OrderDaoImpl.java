@@ -21,83 +21,6 @@ import java.util.*;
 public class OrderDaoImpl implements OrderDao {
     @Autowired
     OrderRepository orderRepository;
-//    @Autowired
-//    OrderItemRepository orderItemRepository;
-//
-//    @Override
-//    public String placeOrder(List<Integer> orderList, Integer userId)  {
-//        Iterator<Integer> it=orderList.iterator();
-//        System.out.println("place order");
-//
-//        System.out.println(orderList);
-//
-//        //先检查有无不合理的的数据
-//        while (it.hasNext())
-//        {
-//            Integer orderitemKey = it.next();
-//
-//            if(!orderItemRepository.findById(orderitemKey).isPresent())
-//            {
-//                return "失败：购物车内未找到该项目";
-//            }
-//            else {
-//                Book book=orderItemRepository.findById(orderitemKey).get().getBook();
-//                if(book.getInventory()<orderItemRepository.findById(orderitemKey).get().getNumber())
-//                {
-//                    return "失败："+book.getName()+"库存不足,"+"仅剩"+book.getInventory()+"本";
-//                }
-//            }
-//        }
-//
-//        Order order=new Order();
-//
-//        User user=userRepository.findById(userId).get();
-//        order.setUser(user);
-//
-//        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//
-//
-//        TimeZone.setDefault(TimeZone.getTimeZone("GMT+8"));
-//        Calendar c = Calendar.getInstance();
-//        Date date = null;
-//        try {
-//            //使用SimpleDateFormat的parse()方法生成Date
-//            date = sf.parse(sf.format(c.getTime()));
-//            //打印Date
-//            System.out.println(date);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//        order.setDate(date);
-//
-//
-//        Iterator<Integer> it2=orderList.iterator();
-//        orderRepository.saveAndFlush(order);
-//        while(it2.hasNext())
-//        {
-//            Integer orderItemKey=it2.next();
-//            System.out.println("orderItemKey :");
-//            System.out.println(orderItemKey);
-//
-//            OrderItem orderItem=orderItemRepository.findById(orderItemKey).get();
-//            order.addMyOrder(orderItem);
-//            orderItem.setInOrder(order);
-//            orderItem.setIsOrder(1);
-//
-//            //减少库存
-//            int num=orderItem.getNumber();
-//            Book book = bookRepository.findById(orderItemRepository.findById(orderItemKey).get().getNumber()).get();
-//            book.setInventory(book.getInventory()-num);
-//            bookRepository.saveAndFlush(book);
-//            orderItemRepository.saveAndFlush(orderItem);
-//        }
-//        orderRepository.saveAndFlush(order);
-//        System.out.println("place order 成功");
-//        return "成功";
-//
-//
-//
-//    }
 
     @Override
     public Order placeOrder(User user) {
@@ -158,5 +81,10 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public void addOredrItemForOrder(Order order, OrderItem orderItem) {
         order.addMyOrder(orderItem);
+    }
+
+    @Override
+    public List<Order> getOrderByUserId(Integer userId) {
+        return orderRepository.findByUserIdForOrders(userId);
     }
 }

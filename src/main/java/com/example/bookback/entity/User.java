@@ -24,6 +24,7 @@ public class User {
     private String email;
     private String password;
     private int userType;
+    private int isBanned;
 
    //private List<Book> myCart=new ArrayList<>();
 
@@ -37,6 +38,7 @@ public class User {
         this.tel=tel;
         this.password=password;
         this.userType=0;
+        this.isBanned=0;
     }
     @Id
     @Column(name = "userid")
@@ -69,6 +71,9 @@ public class User {
     public int getUserType(){return userType;}
     public void setUserType(int userType){this.userType=userType;}
 
+    @Column(name = "isbanned")
+    public int getIsBanned(){return isBanned;}
+    public void setIsBanned(int isBanned){this.isBanned=isBanned;}
    // @ManyToMany(mappedBy = "inCart", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
 
 //    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)

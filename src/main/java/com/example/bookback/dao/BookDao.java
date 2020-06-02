@@ -30,4 +30,5 @@ public interface BookDao {
 
     List<Book> findByType(Integer typeId);
 
+    int editImg(Map<String, String> params);
 }

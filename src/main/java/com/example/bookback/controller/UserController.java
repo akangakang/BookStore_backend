@@ -42,7 +42,24 @@ public class UserController {
         return userService.register(params);
     }
 
+    @RequestMapping("/getAllUser")
+    public List<User> getAllUser(){
+        System.out.println("getAllUser");
 
+//        String ans=userService.register(params);
+//        com.alibaba.fastjson.JSONObject model=new com.alibaba.fastjson.JSONObject();
+//        model.put("status",ans);
+        return userService.getAllUser();
+    }
+
+    @RequestMapping("/editUser")
+    public Msg editUser(@RequestBody Map<String, String> params){
+        System.out.println("editUser");
+        System.out.println(params);
+
+        Msg ans=userService.editUser(params);
+        return ans;
+    }
 
 
 }

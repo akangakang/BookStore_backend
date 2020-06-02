@@ -76,6 +76,7 @@ public class Book {
     public String getIsbn(){return isbn;}
     public void setIsbn(String isbn){this.isbn=isbn;}
 
+
     public String getName(){return name;}
     public void setName(String name){this.name=name;}
 
@@ -83,6 +84,7 @@ public class Book {
     @JoinColumn(name = "typeid")
     public Type getType(){return type;}
     public void setType(Type type){this.type=type;}
+
 
     public String getAuthor(){return author;}
     public void setAuthor(String author){this.author=author;}
@@ -92,6 +94,7 @@ public class Book {
 
    public Double getPrice(){return price;}
    public void setPrice(Double price){this.price=price;}
+
 
    public Integer getInventory(){return inventory;}
    public void setInventory(Integer inventory){this.inventory=inventory;}

@@ -97,4 +97,12 @@ public class BookServiceImpl implements BookService {
         List<Type> types=typeDao.findByName(params.get("type"));
         return bookDao.addBook(params,types.get(0));
     }
+
+    @Override
+    public int editImg(Map<String, String> params) {
+
+
+       return bookDao.editImg(params);
+
+    }
 }

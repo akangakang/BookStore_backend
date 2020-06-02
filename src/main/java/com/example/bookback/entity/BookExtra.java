@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.persistence.Column;
 import javax.persistence.Id;
 
-@Document(collection = "booinfo")
+@Document(collection = "bookcover")
 public class BookExtra {
     public Integer id;
     private String image;

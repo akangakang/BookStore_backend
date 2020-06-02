@@ -21,4 +21,6 @@ public interface BookService {
     List<Book> getAllBooks();
 
     Book addBook(Map<String, String> params);
+
+    int editImg(Map<String, String> params);
 }

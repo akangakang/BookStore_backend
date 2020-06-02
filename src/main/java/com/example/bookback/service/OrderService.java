@@ -18,4 +18,6 @@ public interface OrderService {
     Data getOrderTime(Integer orderId);
 
     Order getOrderById(Integer orderId);
+
+    String getOrderByUserId(Integer userId);
 }

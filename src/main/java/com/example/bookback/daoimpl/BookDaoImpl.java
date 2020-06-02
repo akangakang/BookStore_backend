@@ -90,7 +90,7 @@ public class BookDaoImpl implements BookDao {
             else
             {
                 BookExtra bookExtra=bookExtraOptional.get();
-                System.out.println(bookExtra.getId());
+//                System.out.println(bookExtra.getId());
                 book.setExtraCover(bookExtra);
             }
 
@@ -113,27 +113,11 @@ public class BookDaoImpl implements BookDao {
         book.setIsbn(params.get("isbn"));
         book.setType(type);
         book.setPrice(Double.parseDouble(params.get("price")));
+        book.setSale(Integer.parseInt(params.get("sale")));
         bookRepository.saveAndFlush(book);
 
         return 1;
     }
-
-//    @Override
-//    public Msg deleteBook(Integer id) {
-//
-//        if(!bookRepository.findById(id).isPresent())
-//        {
-//            return MsgUtil.makeMsg(0,"删除失败：不存在该数据");
-//        }
-//
-//        //如果有外键引用
-//        if(orderItemRepository.findOrderItemByBook(bookRepository.findById(id).get()).size()>0)
-//        {
-//            return MsgUtil.makeMsg(0,"删除失败：有外键引用无法删除");
-//        }
-//        bookRepository.deleteById(id);
-//        return MsgUtil.makeMsg(1,"删除成功");
-//    }
 
     @Override
     public List<Book> getAllBooks() {
@@ -218,6 +202,24 @@ public class BookDaoImpl implements BookDao {
 
     }
         return books;
+    }
+
+    @Override
+    public int editImg(Map<String, String> params) {
+        int bookId=Integer.parseInt(params.get("key"));
+        String cover=params.get("img");
+
+        System.out.println(cover);
+        Book book=bookRepository.findById(bookId).get();
+        BookExtra bookExtra=bookExtraRepository.findById(bookId).get();
+
+        bookExtra.setImage(cover);
+        book.setExtraCover(bookExtra);
+        bookExtraRepository.save(bookExtra);
+        bookRepository.saveAndFlush(book);
+
+        return 1;
+
     }
 
 

@@ -75,6 +75,8 @@ public class OderItemController {
             model.put("number",orderItem.getNumber());
             model.put("cover",orderItem.getBook().getExtraCover().getImage());
             model.put("price",orderItem.getBook().getPrice());
+            model.put("description",orderItem.getBook().getDescription());
+            model.put("stock",orderItem.getBook().getInventory());
             cartItemsJson.add(model);
         }
 

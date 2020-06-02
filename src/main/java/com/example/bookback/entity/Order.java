@@ -6,9 +6,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "ORDERS")
@@ -19,7 +17,7 @@ public class Order {
     private User user;
     private Date date;
 
-    private Set<OrderItem> myOrder=new HashSet<OrderItem>();
+    private List<OrderItem> myOrder=new ArrayList<OrderItem>();
 
     @Id
     @Column(name = "orderid")
@@ -42,8 +40,8 @@ public class Order {
     public void setDate(Date date){this.date=date;}
 
     @OneToMany(mappedBy = "inOrder")
-    public Set<OrderItem> getMyOrder(){return myOrder;}
-    public void setMyOrder(Set<OrderItem> o){this.myOrder=o;}
+    public List<OrderItem> getMyOrder(){return myOrder;}
+    public void setMyOrder(List<OrderItem> o){this.myOrder=o;}
     public void addMyOrder(OrderItem orderItem) {
         this.myOrder.add(orderItem);
     }

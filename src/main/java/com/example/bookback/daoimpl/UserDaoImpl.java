@@ -10,6 +10,7 @@ import com.example.bookback.utils.msgutils.MsgUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -53,6 +54,28 @@ public class UserDaoImpl implements UserDao {
             return null;
         }
         else return userRepository.findById(id).get();
+    }
+
+    @Override
+    public List<User> getAllUser() {
+        return  userRepository.findAll();
+    }
+
+    @Override
+    public int editUser(Map<String, String> params) {
+        int userId= Integer.parseInt(params.get("userId"));
+        User user=userRepository.findById(userId).get();
+        user.setAddress(params.get("address"));
+        user.setEmail(params.get("email"));
+        user.setName(params.get("name"));
+        user.setNickname(params.get("nickname"));
+        user.setPassword(params.get("password"));
+        user.setTel(params.get("tel"));
+        user.setIsBanned(Integer.parseInt(params.get("isBanned")));
+        user.setUserType(Integer.parseInt(params.get("userType")));
+        userRepository.saveAndFlush(user);
+
+        return 1;
     }
 
 
