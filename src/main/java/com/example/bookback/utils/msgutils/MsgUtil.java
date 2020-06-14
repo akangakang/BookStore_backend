@@ -10,6 +10,7 @@ public class MsgUtil {
     public static final int LOGIN_USER_ERROR = -100;
     public static final int NOT_LOGGED_IN_ERROR = -101;
     public static final int LOGIN_USER_BANNED=-102;
+    public static final int NOT_ADMIN=-103;
 
     public static final String SUCCESS_MSG = "成功";
     public static final String LOGIN_SUCCESS_MSG = "登录成功";
@@ -19,7 +20,8 @@ public class MsgUtil {
     public static final String LOGIN_USER_ERROR_MSG = "用户名或密码错误，请重新输入";
     public static final String NOT_LOGGED_IN_ERROR_MSG = "登录失效，请重新登录";
     public static final String LOGIN_USER_BANNED_MSG= "登录失败：您的账号已被禁用";
-
+    public static final String NOT_ADMIN_ERROR_MSG="您不是管理员";
+    public static final String IS_ADMINMSG="进入管理员界面";
 
 
     public static Msg makeMsg(MsgCode code, JSONObject data){
