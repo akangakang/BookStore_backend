@@ -26,6 +26,8 @@ public class BookController {
     private BookService bookService;
     @Autowired
     private TypeService typeService;
+
+
     @GetMapping("/getBooks")
     public String getBooks() {
         System.out.println("get books");
@@ -43,12 +45,10 @@ public class BookController {
             model.put("stock",book.getInventory());
             model.put("description",book.getDescription());
             model.put("cover",book.getExtraCover().getImage());
-
-
-        model.put("price",book.getPrice());
-        model.put("type",book.getType().getName());
-        model.put("typeKey",book.getType().getTypeid());
-        booksJson.add(model);
+            model.put("price",book.getPrice());
+            model.put("type",book.getType().getName());
+            model.put("typeKey",book.getType().getTypeid());
+            booksJson.add(model);
     }
     String  booksString = JSON.toJSONString(booksJson, SerializerFeature.BrowserCompatible);
         System.out.println(booksString);
@@ -190,4 +190,6 @@ public class BookController {
 
         return model;
     }
+
+
 }

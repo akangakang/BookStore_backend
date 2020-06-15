@@ -24,4 +24,6 @@ public interface OrderItemDao {
     void placeInOrder(OrderItem orderItem,Order order);
 
     List<OrderItem> getOneOrder(Integer orderId);
+
+    List<OrderItem> getAllOrderItemInOrder();
 }

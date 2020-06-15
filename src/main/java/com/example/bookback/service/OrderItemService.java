@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface OrderItemService {
 
+    List<OrderItem> getAllOrderItemInOrder();
+
     OrderItem getByUserAndBook(Integer userId, Integer bookId);
 
     void addOrderItem1(Integer userId, Integer bookId);

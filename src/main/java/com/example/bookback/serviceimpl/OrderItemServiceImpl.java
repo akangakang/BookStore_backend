@@ -22,6 +22,11 @@ public class OrderItemServiceImpl implements OrderItemService {
     UserDao userDao;
 
 
+    @Override
+    public List<OrderItem> getAllOrderItemInOrder() {
+        List<OrderItem> orderItems=orderItemDao.getAllOrderItemInOrder();
+        return orderItems;
+    }
 
     @Override
     public OrderItem getByUserAndBook(Integer userId, Integer bookId) {
