@@ -57,17 +57,7 @@ public class BookServiceImpl implements BookService {
            return MsgUtil.makeMsg(1,"修改成功");
        }
        else return MsgUtil.makeMsg(0,"修改失败");
-//        book.setInventory(Integer.parseInt(params.get("stock")));
-//        book.setAuthor(params.get("author"));
-//        book.setName(params.get("book"));
-//        book.setDescription(params.get("description"));
-//        book.setIsbn(params.get("isbn"));
-//        book.setType(type.get(0));
-//        book.setPrice(Double.parseDouble(params.get("price")));
-//        bookRepository.saveAndFlush(book);
-//
-//
-//        return bookDao.editBook(params);
+
     }
 
     @Override

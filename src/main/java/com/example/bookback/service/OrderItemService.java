@@ -19,4 +19,6 @@ public interface OrderItemService {
     Integer addOrderItemByItemId(Integer itemId);
 
     Integer removeCartItem(Integer itemId);
+
+    List<OrderItem> getAllOrderItemInOrderByUserId(Integer userId);
 }

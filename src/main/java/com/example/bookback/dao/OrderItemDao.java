@@ -26,4 +26,6 @@ public interface OrderItemDao {
     List<OrderItem> getOneOrder(Integer orderId);
 
     List<OrderItem> getAllOrderItemInOrder();
+
+    List<OrderItem> getAllOrderItemInOrderByUserId(Integer userId);
 }

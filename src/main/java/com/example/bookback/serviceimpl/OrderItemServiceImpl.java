@@ -72,4 +72,10 @@ public class OrderItemServiceImpl implements OrderItemService {
     public Integer removeCartItem(Integer itemId) {
         return orderItemDao.removeCartItem(itemId);
     }
+
+    @Override
+    public List<OrderItem> getAllOrderItemInOrderByUserId(Integer userId) {
+        List<OrderItem> orderItems=orderItemDao.getAllOrderItemInOrderByUserId(userId);
+        return orderItems;
+    }
 }

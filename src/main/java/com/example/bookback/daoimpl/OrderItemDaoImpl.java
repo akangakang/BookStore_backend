@@ -154,5 +154,23 @@ public class OrderItemDaoImpl implements OrderItemDao {
         return orderItems;
     }
 
+    @Override
+    public List<OrderItem> getAllOrderItemInOrderByUserId(Integer userId) {
+        List<OrderItem> orderItems=orderItemRepository.getAllOrderItemInOrderByUserId(userId);
+        Iterator<OrderItem> it =orderItems.iterator();
+
+        while (it.hasNext())
+        {
+            OrderItem orderItem=it.next();
+            Book book=orderItem.getBook();
+            Integer id=book.getBookId();
+            BookExtra bookExtra=bookExtraRepository.findById(id).get();
+            book.setExtraCover(bookExtra);
+
+            orderItem.setBook(book);
+        }
+        return orderItems;
+    }
+
 
 }

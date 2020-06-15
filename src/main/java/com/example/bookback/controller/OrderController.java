@@ -121,10 +121,10 @@ public class OrderController {
         return order.getDate();
     }
 
-    @GetMapping("/getOrderAllInfo")
-    public String getOrderAllInfo(@RequestParam(value="userId") Integer userId)
+    @GetMapping("/getMyOrderAllInfo")
+    public String getMyOrderAllInfo(@RequestParam(value="userId") Integer userId)
     {
-        System.out.println("getOrderAllInfo");
+        System.out.println("getMyOrderAllInfo");
         System.out.println(userId);
 
         String orders= orderService.getOrderByUserId(userId);

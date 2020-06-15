@@ -31,6 +31,7 @@ public class SaleController {
     @Autowired
     private UserService userService;
 
+    // 获得所有orderItem
     @RequestMapping("/bookSale")
     public String bookSale() {
         System.out.println("bookSale");
@@ -56,10 +57,38 @@ public class SaleController {
         return orderItemsString;
     }
 
+    // 获得id为userId的人的所有orderItem
+    @RequestMapping("/myBookSale")
+    public String myBookSale(@RequestParam(value="userId") Integer userId) {
+        System.out.println("myBookSale");
+        System.out.println("userId");
+
+        List<OrderItem> ans = orderItemService.getAllOrderItemInOrderByUserId(userId);
+        Iterator<OrderItem> it = ans.iterator();
+
+        ArrayList<JSONObject> orderItemsJson = new ArrayList<JSONObject>();
+        while (it.hasNext()) {
+            OrderItem orderItem = (OrderItem) it.next();
+
+            JSONObject model = new JSONObject();
+            model.put("orderItemId", orderItem.getOrderItemId());
+            model.put("bookId", orderItem.getBook().getBookId());
+            model.put("userId", orderItem.getUser().getUserId());
+            model.put("price", orderItem.getPrice());
+            model.put("time", orderItem.getInOrder().getDate());
+            model.put("number", orderItem.getNumber());
+            orderItemsJson.add(model);
+        }
+        String orderItemsString = JSON.toJSONString(orderItemsJson, SerializerFeature.BrowserCompatible);
+        System.out.println(orderItemsString);
+        return orderItemsString;
+    }
+
+    //获得统计功能所需的所有书籍信息
     @GetMapping("/getBooksForStatistic")
     public String getBooksForStatistic() {
         System.out.println("getBooksForStatistic");
-        List<Book> ans = bookService.getBooks();
+        List<Book> ans = bookService.getAllBooks();
         Iterator<Book> it = ans.iterator();
 
         ArrayList<JSONObject> booksJson = new ArrayList<JSONObject>();
@@ -80,6 +109,7 @@ public class SaleController {
         return JSON.toJSONString(booksJson, SerializerFeature.BrowserCompatible);
     }
 
+    // 获得所有用户信息 用于用户消费额统计
     @GetMapping("/getAllUserForStatistic")
     public String getAllUserForStatistic() {
         System.out.println("getAllUserForStatistic");
@@ -96,6 +126,9 @@ public class SaleController {
         }
 
         return JSON.toJSONString(usersJson, SerializerFeature.BrowserCompatible);
+
     }
+
+
 }
 
