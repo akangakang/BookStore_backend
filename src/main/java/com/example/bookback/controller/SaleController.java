@@ -122,6 +122,7 @@ public class SaleController {
             model.put("userId", user.getUserId());
             model.put("name",user.getName());
             model.put("price", 0);
+            model.put("number", 0);
             usersJson.add(model);
         }
 
