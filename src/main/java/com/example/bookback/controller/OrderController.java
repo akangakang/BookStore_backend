@@ -104,7 +104,7 @@ public class OrderController {
                 Book book=orderItem.getBook();
 
                 model1.put("book",book.getName());
-
+                model1.put("orderItemId",orderItem.getOrderItemId());
                 orderItemJson.add(model1);
             }
             model.put("myOrder",orderItemJson);
@@ -114,6 +114,8 @@ public class OrderController {
         System.out.println(orderString);
         return orderString;
     }
+
+
 
     @GetMapping("/getOrderTime")
     public Date getOrderTime(@RequestParam(value="orderId") Integer orderId)

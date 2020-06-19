@@ -142,6 +142,7 @@ public class OrderServiceImpl implements OrderService {
                 JSONObject model1=new JSONObject();
                 OrderItem orderItem=orderItemIterator.next();
 
+                model1.put("myId",orderItem.getOrderItemId());
                 model1.put("number",orderItem.getNumber());
                 model1.put("price",orderItem.getPrice());
                 int id=orderItem.getBook().getBookId();
@@ -152,7 +153,7 @@ public class OrderServiceImpl implements OrderService {
                 model1.put("author",book1.getAuthor());
                 model1.put("isbn",book1.getIsbn());
                 model1.put("stock",book1.getInventory());
-//                model.put("description",book1.getDescription());
+                model.put("description",book1.getDescription());
                 model1.put("cover",book1.getExtraCover().getImage());
                 orderItemJson.add(model1);
             }

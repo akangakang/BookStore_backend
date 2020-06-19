@@ -109,6 +109,33 @@ public class BookController {
 //        System.out.println(booksString);
         return booksString;
     }
+    @GetMapping("/getBooksAllInfoW")
+    public String getBooksAllInfoW() {
+        System.out.println("getBooksAllInfoW");
+        List<Book> ans=bookService.getAllBooks();
+        Iterator<Book> it =ans.iterator();
+
+        ArrayList<JSONObject> booksJson = new ArrayList<JSONObject>();
+        for(int i=0;i<10 && it.hasNext();i++){
+            Book book = (Book) it.next();
+
+            JSONObject model=new JSONObject();
+            model.put("key",book.getBookId());
+            model.put("book",book.getName());
+            model.put("author",book.getAuthor());
+            model.put("isbn",book.getIsbn());
+            model.put("stock",book.getInventory());
+            model.put("cover",book.getExtraCover().getImage());
+            model.put("price",book.getPrice());
+            model.put("type",book.getType().getName());
+            model.put("typeKey",book.getType().getTypeid());
+            model.put("description",book.getDescription());
+            model.put("sale",book.getSale());
+            booksJson.add(model);
+        }
+        //        System.out.println(booksString);
+        return JSON.toJSONString(booksJson, SerializerFeature.BrowserCompatible);
+    }
 
     @RequestMapping("/editBook")
     public Msg editBook(@RequestBody Map<String, String> params){
