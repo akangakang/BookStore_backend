@@ -18,7 +18,6 @@ public interface BookDao {
 
     int editBook(Map<String, String> params, Type type);
 
-//    Msg deleteBook(Integer id);
 
     List<Book> getAllBooks();
 

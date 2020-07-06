@@ -130,10 +130,7 @@ public class OrderController {
         System.out.println("getMyOrderAllInfo");
         System.out.println(userId);
 
-        String orders= orderService.getOrderByUserId(userId);
-//        String jsonStr = JSON.toJSONString(orders,SerializerFeature.DisableCircularReferenceDetect);
-//        System.out.println(jsonStr);
-        return orders;
+        return orderService.getOrderByUserId(userId);
 
     }
 

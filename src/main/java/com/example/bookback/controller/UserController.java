@@ -36,19 +36,12 @@ public class UserController {
 
         System.out.println(username);
         System.out.println(password);
-//        String ans=userService.register(params);
-//        com.alibaba.fastjson.JSONObject model=new com.alibaba.fastjson.JSONObject();
-//        model.put("status",ans);
         return userService.register(params);
     }
 
     @RequestMapping("/getAllUser")
     public List<User> getAllUser(){
         System.out.println("getAllUser");
-
-//        String ans=userService.register(params);
-//        com.alibaba.fastjson.JSONObject model=new com.alibaba.fastjson.JSONObject();
-//        model.put("status",ans);
         return userService.getAllUser();
     }
 

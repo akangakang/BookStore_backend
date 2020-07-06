@@ -16,8 +16,7 @@ import java.util.Map;
 public class TypeDaoImpl implements TypeDao {
     @Autowired
     TypeRepository typeRepository;
-//    @Autowired
-//    BookRepository bookRepository;
+
     @Override
     public List<Type> findAll() {
         return typeRepository.findAll();

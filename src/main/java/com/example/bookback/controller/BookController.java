@@ -105,9 +105,8 @@ public class BookController {
             model.put("sale",book.getSale());
             booksJson.add(model);
         }
-        String  booksString = JSON.toJSONString(booksJson, SerializerFeature.BrowserCompatible);
-//        System.out.println(booksString);
-        return booksString;
+        //        System.out.println(booksString);
+        return JSON.toJSONString(booksJson, SerializerFeature.BrowserCompatible);
     }
     @GetMapping("/getBooksAllInfoW")
     public String getBooksAllInfoW() {

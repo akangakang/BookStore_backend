@@ -26,10 +26,7 @@ public class BookDaoImpl implements BookDao {
 
     @Autowired
     private BookExtraRepository bookExtraRepository;
-//    @Autowired
-//    private OrderItemRepository orderItemRepository;
-//    @Autowired
-//    private TypeRepository typeRepository;
+
 
     @Override
     public Book findOne(Integer id){
